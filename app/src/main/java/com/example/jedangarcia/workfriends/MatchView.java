@@ -22,10 +22,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class MatchView extends Activity {
 
     private String matchURL = "http://geekfancy.com/workfriends2/get_match.php?uid=11&week=2015.46";
     private final String DEBUG_TAG = "MatchView";
+    private int match1ID;
+    private int match2ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,7 @@ public class MatchView extends Activity {
         String uidstring = intent.getStringExtra("uid");
         String weekstring = intent.getStringExtra("week");
 
-        String stringUrl = matchURL + "uid=" + uidstring + "&week=" + weekstring;
+        String stringUrl = matchURL;// + "uid=" + uidstring + "&week=" + weekstring;
 
         class DownloadWebpageTask extends AsyncTask<String, Void, String> {
             @Override
@@ -53,6 +58,29 @@ public class MatchView extends Activity {
             protected void onPostExecute(String result) {
                 // parse the JSON
                 Log.d(DEBUG_TAG, result);
+                try {
+                    JSONArray matchesJson = new JSONArray(result);
+
+                    JSONObject matchJson = matchesJson.getJSONObject(0);
+                    match1ID = matchJson.getInt("match_1");
+
+                    matchJson = matchesJson.getJSONObject(1);
+                    match2ID = matchJson.getInt("match_2");
+
+                    ConnectivityManager connMgr = (ConnectivityManager)
+                            getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        //new GetUserWebPage().execute(stringUrl);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No network connection available.", Toast.LENGTH_SHORT);
+                    }
+
+
+                } catch (Exception e){
+                    Log.e(DEBUG_TAG, e.getMessage());
+                }
+
             }
         }
 

@@ -1,9 +1,11 @@
 package com.example.jedangarcia.workfriends;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class WorkFriends extends Activity {
@@ -65,6 +67,11 @@ public class WorkFriends extends Activity {
 
     }
     */
+
+    public void onClickLogin(View v){
+        Intent intent = new Intent(this, MatchView.class);
+        startActivity(intent);
+    }
 
 
 

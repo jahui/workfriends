@@ -34,6 +34,7 @@
                 android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Kevin Chen"
+                android:textColor="#ffad33"
                 android:id="@+id/textView"
                 android:gravity="center_horizontal"
                 android:layout_weight="1" />
@@ -59,6 +60,7 @@
                 android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Kevin Kim"
+                android:textColor="#ffad33"
                 android:id="@+id/textView2"
                 android:gravity="center_horizontal"
                 android:layout_weight="1" />
