@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:text="Chat\nBach Ha: hi\nRandom Dude: take my blockers"
+        android:text="@string/fake_chat"
         android:background="#ffffff"/>
 
 </LinearLayout>

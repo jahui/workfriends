@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 public class MatchView extends Activity {
 
-    private String matchURL = "http://geekfancy.com/workfriends2/get_match.php?uid=7&week=2015.46";
+    private String matchURL = "http://geekfancy.com/workfriends2/get_match.php?uid=1&week=2015.46";
     private final String DEBUG_TAG = "MatchView";
     private String match1ID;
     private String match2ID;
