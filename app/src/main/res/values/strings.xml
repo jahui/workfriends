@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WorkFriends</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_label">WorkFriends</string>
+    <string name="account_label">Sign Up!</string>
+    <string name="forgot_label">Forgot your password?</string>
+    <string name="login_button">Log In</string>
+</resources>
