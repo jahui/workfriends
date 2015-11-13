@@ -33,7 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Kevin Chen"
                 android:textColor="#ffad33"
                 android:id="@+id/textView"
                 android:gravity="center_horizontal"
@@ -59,7 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Kevin Kim"
                 android:textColor="#ffad33"
                 android:id="@+id/textView2"
                 android:gravity="center_horizontal"
@@ -74,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:text="Chat\nKevin Kim: hi\nKevin Chen: want to netflix and chill"
+        android:text="Chat\nBach Ha: hi\nRandom Dude: take my blockers"
         android:background="#ffffff"/>
 
 </LinearLayout>

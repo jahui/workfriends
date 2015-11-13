@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,10 +29,10 @@ import org.json.JSONObject;
 
 public class MatchView extends Activity {
 
-    private String matchURL = "http://geekfancy.com/workfriends2/get_match.php?uid=11&week=2015.46";
+    private String matchURL = "http://geekfancy.com/workfriends2/get_match.php?uid=7&week=2015.46";
     private final String DEBUG_TAG = "MatchView";
-    private int match1ID;
-    private int match2ID;
+    private String match1ID;
+    private String match2ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +64,101 @@ public class MatchView extends Activity {
                     JSONArray matchesJson = new JSONArray(result);
 
                     JSONObject matchJson = matchesJson.getJSONObject(0);
-                    match1ID = matchJson.getInt("match_1");
+                    match1ID = matchJson.getString("match_1");
 
-                    matchJson = matchesJson.getJSONObject(1);
-                    match2ID = matchJson.getInt("match_2");
+                    //matchJson = matchesJson.getJSONObject(1);
+                    match2ID = matchJson.getString("match_2");
+
+                    class GetUserWebPage extends AsyncTask<String, Void, String> {
+
+                        //private final String DEBUG_TAG = "GetUserWebPage";
+                        @Override
+                        protected String doInBackground(String... urls) {
+
+                            // params comes from the execute() call: params[0] is the url.
+                            try {
+                                return downloadUrl(urls[0]);
+                            } catch (IOException e) {
+                                return "Unable to retrieve web page. URL may be invalid.";
+                            }
+                        }
+                        // onPostExecute displays the results of the AsyncTask.
+                        @Override
+                        protected void onPostExecute(String result) {
+                            // parse the JSON
+                            //Log.d(DEBUG_TAG + "nested", result);
+                            try {
+                                JSONArray matchesJson = new JSONArray(result);
+
+                                JSONObject matchJson = matchesJson.getJSONObject(0);
+                                String first_name = matchJson.getString("first_name");
+
+                                //matchJson = matchesJson.getJSONObject(1);
+                                String last_name = matchJson.getString("last_name");
+
+                                TextView view = (TextView) findViewById (R.id.textView);
+                                view.setText(first_name + " " + last_name);
+                                view.invalidate();
+
+
+
+                            } catch (Exception e){
+                                Log.e(DEBUG_TAG, e.getMessage());
+                            }
+
+                        }
+
+                    }
+
+                    class GetUserWebPage2 extends AsyncTask<String, Void, String> {
+
+                        //private final String DEBUG_TAG = "GetUserWebPage";
+                        @Override
+                        protected String doInBackground(String... urls) {
+
+                            // params comes from the execute() call: params[0] is the url.
+                            try {
+                                return downloadUrl(urls[0]);
+                            } catch (IOException e) {
+                                return "Unable to retrieve web page. URL may be invalid.";
+                            }
+                        }
+                        // onPostExecute displays the results of the AsyncTask.
+                        @Override
+                        protected void onPostExecute(String result) {
+                            // parse the JSON
+                            //Log.d(DEBUG_TAG + "nested", result);
+                            try {
+                                JSONArray matchesJson = new JSONArray(result);
+
+                                JSONObject matchJson = matchesJson.getJSONObject(0);
+                                String first_name = matchJson.getString("first_name");
+
+                                //matchJson = matchesJson.getJSONObject(1);
+                                String last_name = matchJson.getString("last_name");
+
+                                TextView view2 = (TextView) findViewById (R.id.textView2);
+                                view2.setText(first_name + " " + last_name);
+                                view2.invalidate();
+
+
+
+                            } catch (Exception e){
+                                Log.e(DEBUG_TAG, e.getMessage());
+                            }
+
+                        }
+
+                    }
+
 
                     ConnectivityManager connMgr = (ConnectivityManager)
                             getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
-                        //new GetUserWebPage().execute(stringUrl);
+                        String getUserURL = "http://geekfancy.com/workfriends2/get_specific_user.php?uid=";
+                        new GetUserWebPage().execute(getUserURL+match1ID);
+                        new GetUserWebPage2().execute(getUserURL+match2ID);
                     } else {
                         Toast.makeText(getApplicationContext(), "No network connection available.", Toast.LENGTH_SHORT);
                     }
@@ -88,6 +175,7 @@ public class MatchView extends Activity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
+            // run the first query to get the matched user ids
             new DownloadWebpageTask().execute(stringUrl);
         } else {
             Toast.makeText(getApplicationContext(), "No network connection available.", Toast.LENGTH_SHORT);
