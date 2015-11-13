@@ -1,4 +1,4 @@
-package com.nullpointer.app;
+package com.example.jedangarcia.workfriends;
 
 import android.os.AsyncTask;
 import android.util.Log;

@@ -1,5 +1,6 @@
 package com.example.jedangarcia.workfriends;
 
+import com.example.*;
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;

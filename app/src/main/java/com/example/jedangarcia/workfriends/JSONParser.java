@@ -1,4 +1,4 @@
-package com.nullpointer.app;
+package com.example.jedangarcia.workfriends;
 
 /**
  * Created by Christopher on 4/30/2014.
