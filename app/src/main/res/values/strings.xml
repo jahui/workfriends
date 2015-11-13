@@ -7,4 +7,5 @@
     <string name="account_label">Sign Up!</string>
     <string name="forgot_label">Forgot your password?</string>
     <string name="login_button">Log In</string>
+    <string name="title_activity_match_view">Matches</string>
 </resources>
