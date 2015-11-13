@@ -1,4 +1,4 @@
-package com.nullpointer.app;
+package com.example.jedangarcia.workfriends;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
