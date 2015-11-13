@@ -69,7 +69,7 @@ public class WorkFriends extends Activity {
     */
 
     public void onClickLogin(View v){
-        Intent intent = new Intent(this, MatchView.class);
+        Intent intent = new Intent(this, SelfProfileView.class);
         startActivity(intent);
     }
 
